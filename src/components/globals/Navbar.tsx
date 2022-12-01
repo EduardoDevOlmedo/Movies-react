@@ -1,9 +1,12 @@
-import { useState } from 'react'
+import { useCallback,  useState } from 'react'
 import Heart from "../..//assets/heart.svg"
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Camera from "../../assets/camera.svg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ClickAwayListener from 'react-click-away-listener';
+
+
+
 
 const Navbar = () => {
 
@@ -26,15 +29,37 @@ const Navbar = () => {
     if((value.trim() !== "")) setQuery(value)
   }
 
+  const handlePushRoute = () => {
+    location.href = `/search/${query}`
+  }
+
+  
+  const handleUserKeyPress = useCallback((event: React.KeyboardEvent<HTMLInputElement>) => {
+    const { key } = event;
+    if(key !== "Enter") return;
+    
+
+    if(query.length !== 0){
+      handlePushRoute()
+    }
+
+}, [query]);
+
+
+  
+
+
   return (
     <nav>
-      <img src={Camera}/>
+      <a href='/'>
+      <img src={Camera}  />
+      </a>
       <div className='containerHeart'>
         <ClickAwayListener onClickAway={handleClickAway}>
         <div className="pass-wrapp">
           <input placeholder='Search'
+            onKeyPress={(e) => handleUserKeyPress(e)}
              onChange={handleInputChange}
-             value={query}
              name="query"
              style={{
               width: `${visibility ? '100%' : '40%'}`
@@ -44,7 +69,7 @@ const Navbar = () => {
           {
             visibility && (
               <FontAwesomeIcon
-              onClick={() => console.log(query)}
+              onClick={() => handlePushRoute()}
               style={{
                 color: 'black',
                 left: '88%',

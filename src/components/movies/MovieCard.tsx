@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
+import React, { useState } from 'react'
 import { Result } from '../../interfaces'
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import MovieDetails from './MovieDetails';
@@ -12,10 +12,8 @@ interface Props {
 }
 
 const MovieCard:React.FC<Props> = ({movie}) => {
-    
-    const router = useNavigate()
 
-   
+
 
     const average = () => {
         let movieAverage;
@@ -24,7 +22,7 @@ const MovieCard:React.FC<Props> = ({movie}) => {
             movieAverage = movie.vote_average + ".0"
         }
 
-        else movieAverage = movie.vote_average;
+        else movieAverage = movie.vote_average.toFixed(2);
 
         return movieAverage
     }
@@ -35,7 +33,7 @@ const MovieCard:React.FC<Props> = ({movie}) => {
     return (
     <div>
         <div className='movie' 
-        onClick={() => router(`movie/${movie.id}`)}
+        onClick={() => location.href = `/movie/${movie.id}`}
         style={{
             position: 'relative'
             

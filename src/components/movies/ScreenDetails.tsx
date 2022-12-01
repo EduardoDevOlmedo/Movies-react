@@ -62,7 +62,7 @@ const ScreenDetails: React.FC<Props> = ({movie, actors}) => {
               fontWeight: "normal"
             }}
           >
-            {movie.overview}
+            {movie.overview ? movie.overview : 'No overview.'}
           </p>
           <div className='actors-grid'>
             {actors?.cast?.slice(0,6).map(actor => {

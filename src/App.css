@@ -109,6 +109,7 @@
   background: red;
   margin: 0;
   height: 40px;
+  padding: 10px;
   border-radius: 4px;
 }
 
@@ -180,9 +181,9 @@ nav input:focus::placeholder {
 
 .rotate {
   color: #131313;
-  width: 40px;
-  height: 40px;
-  animation: rotation 1s infinite linear;
+  width: 30px;
+  height: 30px;
+  animation: rotation  1.5s infinite cubic-bezier(0.475, 0.885, 0.62, 1.275);
 }
 
 .movie {
@@ -210,14 +211,12 @@ nav input:focus::placeholder {
 
 .new-pos {
   position: absolute;
-  top: 7rem;
   font-size: 0.8rem;
   color: #F5B31A;
   background-color: #F2DFB1;
   font-weight: bold;
   padding: 2px 7px;
   border-radius: 8px;
-  left: 10rem;
   display: flex;
   gap: 6px;
   padding:2%;
@@ -404,6 +403,7 @@ nav input:focus::placeholder {
 
 
 .actors-grid {
+  margin-top: 20px;
   display: grid;
   gap: 10px;
   grid-template-columns: repeat(2, 1fr);

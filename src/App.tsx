@@ -1,12 +1,14 @@
 import './App.css'
-import {  BrowserRouter, Navigate, Route, RouterProvider, Routes, useNavigate } from 'react-router-dom'
+import {  BrowserRouter, Route,  Routes} from 'react-router-dom'
 import AuthProvider from './context/Auth/AuthProvider'
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext} from 'react'
 import { AuthContext } from './context/Auth/AuthContext'
 import Login from './screens/Login'
 import Home from './screens/Home'
 import MovieDetail from './screens/MovieDetail'
 import PageProvider from './context/pageContext.ts/PageProvider'
+import Search from './screens/Search'
+import Favorites from './screens/Favorites'
 
 
 interface Props {
@@ -37,7 +39,7 @@ function App(){
     <AuthProvider>
       <PageProvider>
 
-      <BrowserRouter>  
+      <BrowserRouter>
           <Routes>
               <Route 
                 path='/'
@@ -52,6 +54,22 @@ function App(){
                 element={
                   <CheckAuth>
                     <MovieDetail />
+                  </CheckAuth>
+                }
+                />
+                <Route 
+                path='search/:query'
+                element={
+                  <CheckAuth>
+                    <Search />
+                  </CheckAuth>
+                }
+                />
+                <Route 
+                path='/favorites'
+                element={
+                  <CheckAuth>
+                    <Favorites />
                   </CheckAuth>
                 }
                 />

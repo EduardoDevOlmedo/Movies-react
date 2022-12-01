@@ -17,7 +17,6 @@ import { releaseDate } from '../utils/makeDate'
 const MovieDetails = () => {
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
-    const message = checkMessage(error, loading)
     
 
     const {id} = useParams()
@@ -76,9 +75,6 @@ const MovieDetails = () => {
       return url
     }
 
-    // console.log(movie?.title)
-    // console.log(suggestions?.results?.map(el => el.title))
-    // console.log(actors.cast?.map(el => el.name))
 
     return (
     <>
@@ -103,18 +99,23 @@ const MovieDetails = () => {
 
       <div className='card-grid'>
           {
-            suggestions?.results?.slice(0,6).map(suggestion => {
+           suggestions.results?.length! > 0 ? 
+           suggestions?.results?.slice(0,6).map(suggestion => {
               return (
                 <MovieCard 
                 movie={suggestion}
                 />
                 )
-              })
-            }
-        </div>
+              }) : (
+                <div>
+                  No suggestions were found. 😓
+                </div>
+              )
+            } 
+            </div>
             </section>
-    </section>
-      )
+         </section>
+      ) 
      }
     </>
   )
