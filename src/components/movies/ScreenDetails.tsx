@@ -7,6 +7,8 @@ import Heart from "../../assets/Heart.svg"
 import { Result } from '../../interfaces'
 import { Actor } from '../../interfaces/Actor'
 import ActorCard from './ActorCard'
+import { toggleFavorites } from '../../utils/toggleFavorite'
+import { existsInFavorites } from '../../utils/ExistsInFavorites'
 
 interface Props {
     movie: Result
@@ -16,9 +18,11 @@ interface Props {
 const ScreenDetails: React.FC<Props> = ({movie, actors}) => {
     const release = releaseDate(movie?.release_date!)
 
-    const [isLiked, setIsLiked] = useState(false)
+    const [isLiked, setIsLiked] = useState(existsInFavorites(movie.id))
+
 
     const handleClick = () => {
+        toggleFavorites(movie.id)
         setIsLiked(!isLiked)
     }
 

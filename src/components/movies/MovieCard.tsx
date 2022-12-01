@@ -8,10 +8,11 @@ import { imageUrl } from '../../utils/getImageUrl';
 
 interface Props {
     movie: Result;
+    shouldShowFavorite: boolean;
     
 }
 
-const MovieCard:React.FC<Props> = ({movie}) => {
+const MovieCard:React.FC<Props> = ({movie, shouldShowFavorite}) => {
 
 
 
@@ -56,6 +57,7 @@ const MovieCard:React.FC<Props> = ({movie}) => {
 
         <div className='movie-details'>
             <MovieDetails
+                shouldShowFavorite={shouldShowFavorite}
                 movie={movie}
             />
         </div>

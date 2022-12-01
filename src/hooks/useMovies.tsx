@@ -15,7 +15,7 @@ const useMovies = async(query: string | Number, page?: Number) => {
     // made it sleep fo
     const {data} = await axios.get<Movie>(`https://api.themoviedb.org/3/movie/${query}`, {params})
 
-
+    
     return data;
 }
 

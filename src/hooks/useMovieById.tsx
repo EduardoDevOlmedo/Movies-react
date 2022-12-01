@@ -1,23 +1,33 @@
 
 import axios from 'axios';
-import { Movie, Result } from '../interfaces';
+
+import { Result } from '../interfaces';
+import { favorites } from '../utils/favorites';
 import { sleep } from '../utils/sleep';
 
+export interface Response {
+    data: Result;
+}
 
-const useMoviesById = async(id: Number) => {
+export const  UseMovieById = async() => {
 
+    const movieIDS = favorites();
     const apiKey = import.meta.env.VITE_API_KEY;
 
     const params = new URLSearchParams()
 
     params.append('api_key', apiKey)
-    // made it sleep fo
+
+    await sleep(1500)
+    const res = await Promise.all(
+        movieIDS.map((id: number) => {
+          return axios.get<Result>(`https://api.themoviedb.org/3/movie/${id}`, {params}).then((response) => response.data)
+        })
+      );
 
 
-    const {data} = await axios.get<Result>(`https://api.themoviedb.org/3/movie/${id}`, {params})
-    return data;
+      return res
 }
 
 
-export default useMoviesById
 

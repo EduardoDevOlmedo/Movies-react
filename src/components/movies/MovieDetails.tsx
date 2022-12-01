@@ -9,9 +9,12 @@ import { existsInFavorites } from '../../utils/ExistsInFavorites'
 
 interface Props {
     movie: Result;
+    shouldShowFavorite: boolean;
+
 }
 
-const MovieDetails:React.FC<Props> = ({movie}) => {
+
+const MovieDetails:React.FC<Props> = ({movie, shouldShowFavorite}) => {
  
     const [isLiked, setIsLiked] = useState(existsInFavorites(movie.id))
     
@@ -35,13 +38,15 @@ const MovieDetails:React.FC<Props> = ({movie}) => {
                 </h5>
                 <p>{`${release[1]} ${release[3]}`}</p>
             </div>
-            <div className='img-wrap'>
+            {
+                shouldShowFavorite && (<div className='img-wrap'>
                 <img 
-                    onClick={handleClick}
-                    alt='like/dislike'
-                    src={isLiked ? Heart : NotFavorite}
-                />
-            </div>
+                        onClick={handleClick}
+                        alt='like/dislike'
+                        src={ isLiked ? Heart : NotFavorite}
+                    />
+                </div>)
+            }
         </div>
         <div className='overview'>
             {movie.overview ? movie.overview.substring(0, 95) : 'No  overview.'} 

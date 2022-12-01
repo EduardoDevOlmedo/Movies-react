@@ -63,7 +63,7 @@ const Search = () => {
             <div className='card-grid'>
           {
                   movies?.map(movie => {
-                    return <MovieCard  key={movie.id} movie={movie} />
+                    return <MovieCard  shouldShowFavorite key={movie.id} movie={movie} />
                   })
           }
         </div>

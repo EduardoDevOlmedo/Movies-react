@@ -33,6 +33,7 @@ const Navbar = () => {
     location.href = `/search/${query}`
   }
 
+
   
   const handleUserKeyPress = useCallback((event: React.KeyboardEvent<HTMLInputElement>) => {
     const { key } = event;
@@ -82,9 +83,14 @@ const Navbar = () => {
             }
             </div>
         </ClickAwayListener>
-          <a href='/favorites'>
-            <img src={Heart} />
-          </a>
+          {
+            location.pathname !== "/favorites" && 
+            (
+            <a href='/favorites'>
+              <img src={Heart} />
+            </a>
+            )
+          }
           </div>
     </nav>
   )

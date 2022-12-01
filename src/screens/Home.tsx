@@ -73,7 +73,7 @@ const Home = () => {
             !loading && (
               (
                 movies?.map(movie => {
-                  return <MovieCard  key={movie.id} movie={movie} />
+                  return <MovieCard shouldShowFavorite  key={movie.id} movie={movie} />
                 })
               )
             )

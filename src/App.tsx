@@ -9,6 +9,7 @@ import MovieDetail from './screens/MovieDetail'
 import PageProvider from './context/pageContext.ts/PageProvider'
 import Search from './screens/Search'
 import Favorites from './screens/Favorites'
+import NotFound from './screens/NotFound'
 
 
 interface Props {
@@ -73,6 +74,7 @@ function App(){
                   </CheckAuth>
                 }
                 />
+                <Route path='*' element={<NotFound />} />
           </Routes>
       </BrowserRouter>
       </PageProvider>

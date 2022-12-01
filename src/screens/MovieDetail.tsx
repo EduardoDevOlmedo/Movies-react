@@ -103,6 +103,7 @@ const MovieDetails = () => {
            suggestions?.results?.slice(0,6).map(suggestion => {
               return (
                 <MovieCard 
+                shouldShowFavorite={true}
                 movie={suggestion}
                 />
                 )
