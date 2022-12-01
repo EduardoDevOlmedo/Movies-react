@@ -5,7 +5,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from './context/Auth/AuthContext'
 import Login from './screens/Login'
 import Home from './screens/Home'
-import MovieDetails from './screens/MovieDetails'
+import MovieDetail from './screens/MovieDetail'
+import PageProvider from './context/pageContext.ts/PageProvider'
 
 
 interface Props {
@@ -34,6 +35,8 @@ function App(){
 
   return(
     <AuthProvider>
+      <PageProvider>
+
       <BrowserRouter>  
           <Routes>
               <Route 
@@ -48,12 +51,13 @@ function App(){
                 path='movie/:id'
                 element={
                   <CheckAuth>
-                    <MovieDetails />
+                    <MovieDetail />
                   </CheckAuth>
                 }
                 />
           </Routes>
       </BrowserRouter>
+      </PageProvider>
     </AuthProvider>
   )
 

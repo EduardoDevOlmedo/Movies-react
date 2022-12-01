@@ -1,17 +1,24 @@
-import axios from 'axios'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import Loading from '../components/globals/Loading'
+import Navbar from '../components/globals/Navbar'
+import MovieCard from '../components/movies/MovieCard'
+import ScreenDetails from '../components/movies/ScreenDetails'
 import useMovies from '../hooks/useMovies'
 import {  OriginalLanguage, Result } from '../interfaces'
 import { Actor } from '../interfaces/Actor'
 import { FullMovie } from '../interfaces/fullMovie'
 import { Suggestion } from '../interfaces/Suggestion'
 import { checkMessage } from '../utils/checkMessage'
+import { releaseDate } from '../utils/makeDate'
 
 const MovieDetails = () => {
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
     const message = checkMessage(error, loading)
+    
 
     const {id} = useParams()
 
@@ -57,21 +64,59 @@ const MovieDetails = () => {
     useEffect(() => {
       fetchValues()
     }, [])
-    
-    
+
+ 
     const {movie, actors, suggestions} = fullMovie
-    console.log(movie?.title)
+
+    const imageUrl = () => {
+      let url = ''
+
+      url
+      url = movie?.poster_path ?  `http://image.tmdb.org/t/p/w500/${movie.poster_path}` : 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png'
+      return url
+    }
 
     // console.log(movie?.title)
     // console.log(suggestions?.results?.map(el => el.title))
     // console.log(actors.cast?.map(el => el.name))
 
     return (
-    <div style={{color: 'white'}}>
-      
-     
-      
-    </div>
+    <>
+      <Navbar />
+     {
+      loading ?  <Loading 
+      /> : (
+        <section id="movie-detail">
+      <div className='movie-detail-wrapper'>
+        <div
+          className='movie-poster'
+          style={{margin: '0 auto'}}
+        >
+          <img src={imageUrl()} />
+        </div>
+        <div className='detail-wrapper'>
+          <ScreenDetails movie={movie!} actors={actors}/>
+        </div>
+      </div>
+        <section id="movies">
+          <h4>Recommended:</h4>
+
+      <div className='card-grid'>
+          {
+            suggestions?.results?.slice(0,6).map(suggestion => {
+              return (
+                <MovieCard 
+                movie={suggestion}
+                />
+                )
+              })
+            }
+        </div>
+            </section>
+    </section>
+      )
+     }
+    </>
   )
 }
 

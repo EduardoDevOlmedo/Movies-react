@@ -3,7 +3,7 @@ import { AuthContext } from '../context/Auth/AuthContext'
 import { faEye, faEyeSlash, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Camera from "../assets/camera.svg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Error from '../components/Error';
+import Error from '../components/globals/Error';
 
 const Login = () => {
 

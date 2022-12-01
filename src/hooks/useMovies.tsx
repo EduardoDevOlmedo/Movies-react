@@ -5,7 +5,7 @@ import { Movie, Result } from '../interfaces';
 import { sleep } from '../utils/sleep';
 
 
-const useMovies = async(query: string | Number, page?: number) => {
+const useMovies = async(query: string | Number, page?: Number) => {
 
     page ? page : page = 1
     const apiKey = import.meta.env.VITE_API_KEY;
@@ -14,8 +14,7 @@ const useMovies = async(query: string | Number, page?: number) => {
 
     params.append('api_key', apiKey)
     params.append("page", page?.toString()!)
-    // made it sleep for 1sec so you can appreciate the loading icon.
-    await sleep(1000)
+    // made it sleep fo
     const {data} = await axios.get<Movie>(`https://api.themoviedb.org/3/movie/${query}`, {params})
 
 

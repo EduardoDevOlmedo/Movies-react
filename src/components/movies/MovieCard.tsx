@@ -1,25 +1,21 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
-import { Result } from '../interfaces'
+import { Result } from '../../interfaces'
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import MovieDetails from './MovieDetails';
-import { useNavigate } from 'react-router';
+import {  useNavigate } from 'react-router';
+import { imageUrl } from '../../utils/getImageUrl';
 
 interface Props {
-    movie: Result
+    movie: Result;
+    
 }
 
 const MovieCard:React.FC<Props> = ({movie}) => {
     
     const router = useNavigate()
 
-    const imageUrl = () => {
-        let url = ''
-
-        url
-        url = movie.backdrop_path ?  `http://image.tmdb.org/t/p/w500/${movie.backdrop_path}` : 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png'
-        return url
-    }
+   
 
     const average = () => {
         let movieAverage;
@@ -33,13 +29,14 @@ const MovieCard:React.FC<Props> = ({movie}) => {
         return movieAverage
     }
 
-    const src = imageUrl()
-    console.log(src.includes(".svg"))
+    const src = imageUrl(movie.backdrop_path)
 
 
     return (
-    <div className='movie' onClick={() => router(`movie/${movie.id}`)}>
-        <div style={{
+    <div>
+        <div className='movie' 
+        onClick={() => router(`movie/${movie.id}`)}
+        style={{
             position: 'relative'
             
         }}>

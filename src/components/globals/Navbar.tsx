@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import Heart from "../assets/heart.svg"
+import Heart from "../..//assets/heart.svg"
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import Camera from "../assets/camera.svg"
+import Camera from "../../assets/camera.svg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ClickAwayListener from 'react-click-away-listener';
 
