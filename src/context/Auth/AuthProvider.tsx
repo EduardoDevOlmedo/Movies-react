@@ -6,7 +6,7 @@ import { AuthContext } from './AuthContext';
 import { AuthReducer } from './AuthReducer';
 
 export interface AuthState {
-  token: string
+  token: string,
 }
 
 const initialState:AuthState = {
@@ -21,6 +21,7 @@ const AuthProvider: React.FC<Props> = ({children}) => {
 
   const [state, dispatch] = useReducer(AuthReducer, initialState)
  
+
     useEffect(() => {
 
         if(state.token !== ''){
@@ -50,26 +51,26 @@ const AuthProvider: React.FC<Props> = ({children}) => {
 
 
     } catch (error: any) {
-      if(error.isAxiosError){
-        console.log(error.message)
-      }
-
       localStorage.setItem("token", "")
+      dispatch({
+        type: 'Auth - Error',
+        payload: error.message
+      })
     }
   }
 
   const logout = () => {
-    localStorage.setItem("token", "")
     dispatch({
       type: 'Auth - Logout'
     })
+    localStorage.setItem("token", "")
   }
 
 
 
   return (
     <AuthContext.Provider
-        value={{...state, login}}
+        value={{...state, login, logout}}
     >
         {
             children

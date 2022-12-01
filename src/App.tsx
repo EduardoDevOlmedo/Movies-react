@@ -3,20 +3,27 @@ import {  BrowserRouter, Navigate, Route, RouterProvider, Routes, useNavigate } 
 import AuthProvider from './context/Auth/AuthProvider'
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from './context/Auth/AuthContext'
-import Home from './screens/Home'
 import Login from './screens/Login'
+import Home from './screens/Home'
+import MovieDetails from './screens/MovieDetails'
 
 
-function CheckAuth(){
+interface Props {
+  children: JSX.Element[] | JSX.Element
+}
+
+function CheckAuth({children}: Props){
 
   //checks wether the state contains a token or not
   // if it doesn't you are redirected to the login screen.
 
-  let state = useContext(AuthContext)
+  let {token} = useContext(AuthContext)
+  // the validation of the token should be done on the backend
+  // on a real app (fullstack), this should not be made
   return (
     <>
       {
-        state.token !== ""  ? <Home /> : <Login />
+        token !== ""  ? children : <Login />
       }
     </>
   )
@@ -25,17 +32,26 @@ function CheckAuth(){
 
 function App(){
 
-
   return(
     <AuthProvider>
-      <BrowserRouter>
+      <BrowserRouter>  
           <Routes>
               <Route 
                 path='/'
                 element={
-                    <CheckAuth />
+                  <CheckAuth>
+                    <Home />
+                  </CheckAuth>
                 }
-              />
+                />
+                <Route 
+                path='movie/:id'
+                element={
+                  <CheckAuth>
+                    <MovieDetails />
+                  </CheckAuth>
+                }
+                />
           </Routes>
       </BrowserRouter>
     </AuthProvider>
