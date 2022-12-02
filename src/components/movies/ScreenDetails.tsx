@@ -7,6 +7,7 @@ import { Actor } from '../../interfaces/Actor'
 import ActorCard from './ActorCard'
 import { toggleFavorites } from '../../utils/toggleFavorite'
 import { existsInFavorites } from '../../utils/ExistsInFavorites'
+import { images } from '../../utils/imageURLS'
 
 
 
@@ -49,7 +50,7 @@ const ScreenDetails: React.FC<Props> = ({movie, actors}) => {
               <img 
                     onClick={handleClick}
                     alt='like/dislike'
-                    src={isLiked ? "https://firebasestorage.googleapis.com/v0/b/socks-images.appspot.com/o/images%2Fheart.svg?alt=media&token=dcd12bfb-6ae0-42ad-9b62-0076205ccdf8" : "https://firebasestorage.googleapis.com/v0/b/socks-images.appspot.com/o/images%2FNotFavorite.svg?alt=media&token=8dafd918-e2db-4064-a0aa-d0685b3c5849"}
+                    src={isLiked ? images.heart : images.notFavorite}
                     />
             </div>
           </div>

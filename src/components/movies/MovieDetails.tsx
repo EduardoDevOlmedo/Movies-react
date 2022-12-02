@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Result } from '../../interfaces'
-import NotFavorite from "../../assets/NotFavorite.svg"
-import Heart from "../../assets/Heart.svg"
 import { releaseDate } from '../../utils/makeDate'
 import { toggleFavorites } from '../../utils/toggleFavorite'
 import { existsInFavorites } from '../../utils/ExistsInFavorites'
+import { images } from '../../utils/imageURLS'
 
 
 interface Props {
@@ -43,7 +42,7 @@ const MovieDetails:React.FC<Props> = ({movie, shouldShowFavorite}) => {
                 <img 
                         onClick={handleClick}
                         alt='like/dislike'
-                        src={ isLiked ? Heart.toString() : NotFavorite.toString()}
+                        src={ isLiked ? images.heart : images.notFavorite}
                     />
                 </div>)
             }

@@ -1,9 +1,9 @@
 import { useCallback,  useState } from 'react'
-import Heart from "../../assets/heart.svg"
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Camera from "../../assets/camera.svg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ClickAwayListener from 'react-click-away-listener';
+import { images } from '../../utils/imageURLS';
 
 
 
@@ -89,7 +89,7 @@ const Navbar = () => {
             location.pathname !== "/favorites" && 
             (
             <a href='/favorites'>
-              <img src={Heart.toString()} />
+              <img src={images.heart} />
             </a>
             )
           }
