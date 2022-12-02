@@ -22,10 +22,7 @@ const Home = () => {
 
   const getMovies = async() => {
     setLoading(true)
-    const popularMovies = await useMovies("/popular", page).catch((err) => {
-      setError(err)
-      setLoading(false)
-    }) as Movie
+    const popularMovies = await useMovies("/popular", page) as Movie
     setMovies(popularMovies.results)
     setLoading(false)
   }
