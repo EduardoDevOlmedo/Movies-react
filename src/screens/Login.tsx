@@ -15,7 +15,7 @@ const Login = () => {
     })
     const [isError, setIsError] = useState(false)
     const [newError, setNewError] = useState("")
-    const {login, error} = useContext(AuthContext)
+    let {login, error} = useContext(AuthContext)
 
 
 
@@ -50,6 +50,7 @@ const Login = () => {
           setTimeout(() => {
             setIsError(true)
             setIsLoading(false)
+            error = "Credentials are incorrect"
           }, 5000)
     }
         
