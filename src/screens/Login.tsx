@@ -47,6 +47,10 @@ const Login = () => {
           setIsLoading(true)
           setIsError(false)
           login(inputValues.email, inputValues.password)
+          setTimeout(() => {
+            setIsError(true)
+            setIsLoading(false)
+          }, 5000)
     }
         
     const handleClick = () => {
