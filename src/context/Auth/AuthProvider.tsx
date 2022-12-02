@@ -21,10 +21,18 @@ interface Props {
 
 const AuthProvider: React.FC<Props> = ({children}) => {
 
-  const [state, dispatch] = useReducer(AuthReducer, {...initialState, token: localStorage.getItem("token")!})
+  const [state, dispatch] = useReducer(AuthReducer, initialState)
  
 
-   
+     const getToken = () => {
+      dispatch({
+        type: 'Auth - Load user token from Local Storage',
+        payload: JSON.parse(JSON.stringify(state.token))
+     })}
+
+    useEffect(() => {
+      getToken()
+    }, [])
     
    const login = async(email: string, password: string) => {
     

@@ -21,7 +21,7 @@ function CheckAuth({children}: Props){
   //checks wether the state contains a token or not
   // if it doesn't you are redirected to the login screen.
   const [valid, setValid] = useState(useContext(AuthContext).token)
-
+  console.log(valid)
   // the validation of the token should be done on the backend
   // on a real app (fullstack), this should not be made
 

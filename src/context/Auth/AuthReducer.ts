@@ -9,6 +9,10 @@ type AuthType =
 export const AuthReducer = (state: AuthState, action: AuthType):AuthState => {
     
     switch (action.type) {
+        case 'Auth - Load user token from Local Storage':
+            return {
+                token: state.token
+            }
         case "Auth - Login" :
             return {
                 token: action.payload,
