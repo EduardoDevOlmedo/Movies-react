@@ -24,6 +24,7 @@ function CheckAuth({children}: Props){
   let {token} = useContext(AuthContext)
   // the validation of the token should be done on the backend
   // on a real app (fullstack), this should not be made
+  console.log(token == "" ? true : false) 
 
   return (
     <>
