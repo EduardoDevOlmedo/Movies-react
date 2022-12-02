@@ -12,11 +12,11 @@ export interface Response {
 export const  UseMovieById = async() => {
 
     const movieIDS = favorites();
-    const apiKey = import.meta.env.VITE_API_KEY;
+    const apiKey = process.env.VITE_API_KEY;
 
     const params = new URLSearchParams()
 
-    params.append('api_key', apiKey)
+    params.append('api_key', apiKey!)
 
     await sleep(1500)
     const res = await Promise.all(

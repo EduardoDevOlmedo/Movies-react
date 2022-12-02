@@ -4,9 +4,9 @@ import { Movie } from '../interfaces';
 import { sleep } from '../utils/sleep';
 
 const useSearchMovies = async(query: string) => {
-    const apiKey = import.meta.env.VITE_API_KEY;
+    const apiKey = process.env.VITE_API_KEY;
     const params = new URLSearchParams()
-    params.append('api_key', apiKey)
+    params.append('api_key', apiKey!)
     params.append("query", query!)
 
     await sleep(1000)

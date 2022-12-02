@@ -49,7 +49,7 @@ const ScreenDetails: React.FC<Props> = ({movie, actors}) => {
               <img 
                     onClick={handleClick}
                     alt='like/dislike'
-                    src={isLiked ? Heart : NotFavorite}
+                    src={isLiked ? Heart.toString() : NotFavorite.toString()}
                     />
             </div>
           </div>

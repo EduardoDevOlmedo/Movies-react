@@ -56,12 +56,12 @@ const Login = () => {
 
   return (
     <>
-      <section id="login">
+      <section id="login" data-testid="login">
         <div className='main-wrapper'>
           <div className='img-wrapper'>
             <img  
               alt="camera-image"
-              src={Camera}
+              src={String(Camera)}
             />
           </div>
           {/* input */}

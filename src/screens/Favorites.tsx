@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router'
+
 import Loading from '../components/globals/Loading'
 import Navbar from '../components/globals/Navbar'
 import MovieCard from '../components/movies/MovieCard'
@@ -11,7 +11,6 @@ const Favorites = () => {
  
   const [isLoading, setIsLoading] = useState(false)
   const [movies, setMovies] = useState<Result[]>()
-  const router = useNavigate()
   
   const getMovies = async() => {
     setIsLoading(true)
@@ -42,7 +41,7 @@ const Favorites = () => {
           <div className='no-favorites'>
             <h3>No favorites were found</h3>
             <button  
-              onClick={() => router("/")}
+              onClick={() => location.href = "/"}
             >Start adding</button>
           </div>
         </>
@@ -51,9 +50,9 @@ const Favorites = () => {
     
 
     return (
-    <>
+    <div>
       <Navbar />
-      <section id='movies'>
+      <section id='movies' data-testid="favorites">
         <h3>Your favorites</h3>  
       <div className='card-grid'>
         {
@@ -68,7 +67,7 @@ const Favorites = () => {
           }
       </div>
       </section>
-    </>
+    </div>
   )
 }
 
