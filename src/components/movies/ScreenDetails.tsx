@@ -2,13 +2,15 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import { releaseDate } from '../../utils/makeDate'
-import NotFavorite from "../../assets/NotFavorite.svg"
-import Heart from "../../assets/Heart.svg"
 import { Result } from '../../interfaces'
 import { Actor } from '../../interfaces/Actor'
 import ActorCard from './ActorCard'
 import { toggleFavorites } from '../../utils/toggleFavorite'
 import { existsInFavorites } from '../../utils/ExistsInFavorites'
+
+const Heart  = require("../../assets/heart.svg")
+const NotFavorite  = require("../../assets/NotFavorite.svg")
+
 
 interface Props {
     movie: Result
