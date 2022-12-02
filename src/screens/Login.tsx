@@ -4,6 +4,7 @@ import { faEye, faEyeSlash, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import Camera from "../assets/camera.svg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Error from '../components/globals/Error';
+import { text } from '@fortawesome/fontawesome-svg-core';
 
 const Login = () => {
 
@@ -106,7 +107,7 @@ const Login = () => {
           }
           <div className='btn-wrapper'>
             <button
-              disabled={isLoading}
+              disabled={isLoading || inputValues.email.length === 0 || inputValues.password.length === 0}
               onClick={handleLogin}
             >
               {
