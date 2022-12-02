@@ -6,11 +6,13 @@ import { AuthContext } from './AuthContext';
 import { AuthReducer } from './AuthReducer';
 
 export interface AuthState {
-  token: string,
+  token: string;
+  error?: string;
 }
 
 const initialState:AuthState = {
-    token: localStorage.getItem("token" || [])!
+    token: localStorage.getItem("token" || [])!,
+    error: ''
 }
 
 interface Props {
@@ -52,6 +54,10 @@ const AuthProvider: React.FC<Props> = ({children}) => {
 
     } catch (error: any) {
       localStorage.setItem("token", "")
+      dispatch({
+        type: 'Auth - Error',
+        payload: error.message
+      })
     }
   }
 
