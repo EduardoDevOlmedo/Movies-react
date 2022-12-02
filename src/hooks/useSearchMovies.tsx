@@ -10,7 +10,9 @@ const useSearchMovies = async(query: string) => {
     params.append("query", query!)
 
     await sleep(1000)
-    const {data} = await axios.get<Movie>(`https://api.themoviedb.org/3/search/movie/`, {params})
+    const {data} = await axios.get<Movie>(
+        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${query}&page=1&include_adult=false`
+    )
 
 
     return data
