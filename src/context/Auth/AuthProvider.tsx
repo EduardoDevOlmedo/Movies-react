@@ -21,7 +21,7 @@ interface Props {
 
 const AuthProvider: React.FC<Props> = ({children}) => {
 
-  const [state, dispatch] = useReducer(AuthReducer, {...initialState, token: localStorage.getItem("token" || "")!})
+  const [state, dispatch] = useReducer(AuthReducer, {...initialState, token: localStorage.getItem("token")!})
  
 
    

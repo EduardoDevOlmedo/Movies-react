@@ -1,7 +1,7 @@
 import './App.css'
 import {  BrowserRouter, Route,  Routes} from 'react-router-dom'
 import AuthProvider from './context/Auth/AuthProvider'
-import { useContext} from 'react'
+import { useContext, useState} from 'react'
 import { AuthContext } from './context/Auth/AuthContext'
 import Login from './screens/Login'
 import Home from './screens/Home'
@@ -20,16 +20,15 @@ function CheckAuth({children}: Props){
 
   //checks wether the state contains a token or not
   // if it doesn't you are redirected to the login screen.
-  
-  let {token} = useContext(AuthContext)
+  const [valid, setValid] = useState(useContext(AuthContext).token)
+
   // the validation of the token should be done on the backend
   // on a real app (fullstack), this should not be made
-  console.log(token == "" ? true : false) 
 
   return (
     <>
       {
-         token == ""  ? <Login /> : children
+         !valid  ? <Login /> : children
       }
     </>
   )
