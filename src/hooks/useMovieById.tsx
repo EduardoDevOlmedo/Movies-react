@@ -18,7 +18,6 @@ export const  UseMovieById = async() => {
 
     params.append('api_key', apiKey!)
 
-    await sleep(1500)
     const res = await Promise.all(
         movieIDS.map((id: number) => {
           return axios.get<Result>(`https://api.themoviedb.org/3/movie/${id}`, {params}).then((response) => response.data)
