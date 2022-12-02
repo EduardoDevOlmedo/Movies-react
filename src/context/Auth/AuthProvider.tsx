@@ -52,10 +52,6 @@ const AuthProvider: React.FC<Props> = ({children}) => {
 
     } catch (error: any) {
       localStorage.setItem("token", "")
-      dispatch({
-        type: 'Auth - Error',
-        payload: error.message
-      })
     }
   }
 

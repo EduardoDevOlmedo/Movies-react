@@ -3,7 +3,6 @@ import {AuthState} from "./AuthProvider"
 type AuthType = 
 |{ type: "Auth - Login", payload: string} 
 |{ type: "Auth - Load user token from Local Storage", payload: string} 
-|{ type: "Auth - Error", payload: string} 
 |{ type: "Auth - Logout"} 
 
 export const AuthReducer = (state: AuthState, action: AuthType):AuthState => {
@@ -18,11 +17,7 @@ export const AuthReducer = (state: AuthState, action: AuthType):AuthState => {
                 ...state,
                 token: ''
             }
-        case 'Auth - Error':
-            return {
-                ...state,
-                error: action.payload
-            }
+      
         default:
             return state;
     }
