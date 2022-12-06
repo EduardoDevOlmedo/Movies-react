@@ -6,7 +6,7 @@ import Loading from '../components/globals/Loading'
 import Navbar from '../components/globals/Navbar'
 import MovieCard from '../components/movies/MovieCard'
 import ScreenDetails from '../components/movies/ScreenDetails'
-import useMovies from '../hooks/useMovies'
+import { useMovies } from '../hooks/useMovies'
 import {  OriginalLanguage, Result } from '../interfaces'
 import { Actor } from '../interfaces/Actor'
 import { FullMovie } from '../interfaces/fullMovie'
@@ -46,7 +46,7 @@ const MovieDetails = () => {
     const fetchValues = async() => {
       setLoading(true)      
       // we set the cath on the first fetch call so It doesn't try to fetch more data.
-      const movie = await useMovies(id?.toString()!).catch(error => setError(error.messsage)) as Result
+      const movie = await useMovies(id?.toString()!).catch((error: any) => setError(error.messsage)) as Result
       const actors = await useMovies(`${id}/credits`) as Actor
       const suggestions = await useMovies(`${id}/similar`) as Suggestion
       // we wait for all the promises to resolve for better ux.
@@ -82,7 +82,7 @@ const MovieDetails = () => {
      {
       loading ?  <Loading 
       /> : (
-        <section id="movie-detail">
+        <section id="movie-detail" data-testid="movie-details-test">
       <div className='movie-detail-wrapper'>
         <div
           className='movie-poster'

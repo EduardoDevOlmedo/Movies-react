@@ -4,6 +4,7 @@ import { faEye, faEyeSlash, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import Camera from "../assets/camera.svg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Error from '../components/globals/Error';
+import { text } from '@fortawesome/fontawesome-svg-core';
 
 const Login = () => {
 
@@ -15,7 +16,7 @@ const Login = () => {
     })
     const [isError, setIsError] = useState(false)
     const [newError, setNewError] = useState("")
-    const {login, error} = useContext(AuthContext)
+    let {login, error} = useContext(AuthContext)
 
 
 
@@ -47,6 +48,11 @@ const Login = () => {
           setIsLoading(true)
           setIsError(false)
           login(inputValues.email, inputValues.password)
+          setTimeout(() => {
+            setIsError(true)
+            setIsLoading(false)
+            error = "Credentials are incorrect"
+          }, 5000)
     }
         
     const handleClick = () => {
@@ -56,12 +62,12 @@ const Login = () => {
 
   return (
     <>
-      <section id="login">
+      <section id="login" data-testid="login">
         <div className='main-wrapper'>
           <div className='img-wrapper'>
             <img  
               alt="camera-image"
-              src={Camera}
+              src={String(Camera)}
             />
           </div>
           {/* input */}
@@ -101,7 +107,7 @@ const Login = () => {
           }
           <div className='btn-wrapper'>
             <button
-              disabled={isLoading}
+              disabled={isLoading || inputValues.email.length === 0 || inputValues.password.length === 0}
               onClick={handleLogin}
             >
               {

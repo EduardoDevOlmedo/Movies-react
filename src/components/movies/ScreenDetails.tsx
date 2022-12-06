@@ -2,13 +2,14 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import { releaseDate } from '../../utils/makeDate'
-import NotFavorite from "../../assets/NotFavorite.svg"
-import Heart from "../../assets/Heart.svg"
 import { Result } from '../../interfaces'
 import { Actor } from '../../interfaces/Actor'
 import ActorCard from './ActorCard'
 import { toggleFavorites } from '../../utils/toggleFavorite'
 import { existsInFavorites } from '../../utils/ExistsInFavorites'
+import { images } from '../../utils/imageURLS'
+
+
 
 interface Props {
     movie: Result
@@ -49,7 +50,7 @@ const ScreenDetails: React.FC<Props> = ({movie, actors}) => {
               <img 
                     onClick={handleClick}
                     alt='like/dislike'
-                    src={isLiked ? Heart : NotFavorite}
+                    src={isLiked ? images.heart : images.notFavorite}
                     />
             </div>
           </div>

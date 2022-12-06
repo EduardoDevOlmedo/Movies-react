@@ -1,9 +1,9 @@
 import { useCallback,  useState } from 'react'
-import Heart from "../..//assets/heart.svg"
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Camera from "../../assets/camera.svg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ClickAwayListener from 'react-click-away-listener';
+import { images } from '../../utils/imageURLS';
 
 
 
@@ -30,6 +30,7 @@ const Navbar = () => {
   }
 
   const handlePushRoute = () => {
+    if((query.trim() === "")) return
     location.href = `/search/${query}`
   }
 
@@ -52,8 +53,8 @@ const Navbar = () => {
 
   return (
     <nav>
-      <a href='/'>
-      <img src={Camera}  />
+      <a role="button" href='/'>
+      <img src={Camera.toString()}  />
       </a>
       <div className='containerHeart'>
         <ClickAwayListener onClickAway={handleClickAway}>
@@ -62,6 +63,7 @@ const Navbar = () => {
             onKeyPress={(e) => handleUserKeyPress(e)}
              onChange={handleInputChange}
              name="query"
+             data-testid="query-input"
              style={{
               width: `${visibility ? '100%' : '40%'}`
              }}
@@ -87,7 +89,7 @@ const Navbar = () => {
             location.pathname !== "/favorites" && 
             (
             <a href='/favorites'>
-              <img src={Heart} />
+              <img src={images.heart} />
             </a>
             )
           }

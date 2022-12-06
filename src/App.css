@@ -87,6 +87,11 @@
 
 }
 
+.btn-wrapper button[disabled]:hover {
+  opacity: 1;
+  cursor: not-allowed;
+}
+
 .btn-wrapper button:hover, .errorButton:hover, .no-favorites button:hover {
   opacity: 0.8;
   transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.25s;

@@ -1,15 +1,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router'
 import ErrorMain from '../components/globals/ErrorMain'
 import Loading from '../components/globals/Loading'
 import MovieCard from '../components/movies/MovieCard'
 import Navbar from '../components/globals/Navbar'
 import { AuthContext } from '../context/Auth/AuthContext'
-import useMovies from '../hooks/useMovies'
 import { Movie, Result } from '../interfaces'
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { PageContext } from '../context/pageContext.ts/PageContext'
+import { useMovies } from '../hooks/useMovies'
 
 const Home = () => {
 
@@ -49,7 +48,7 @@ const Home = () => {
 
 
   return (
-    <div>
+    <div data-testid="home">
       <Navbar />
       <section id='movies'>
         <div className='title-wrapper' style={{
@@ -84,7 +83,7 @@ const Home = () => {
           page > 1 && 
           <button onClick={() => previousPage()}>Previous</button>
         }
-        <p>{page.toString()}</p>
+          <p>{String(page)}</p>
         <button onClick={() => addOnePage()}>Next</button>
       </div>
       </section>

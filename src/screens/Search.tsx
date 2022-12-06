@@ -54,12 +54,12 @@ const Search = () => {
   return (
     <>
         <Navbar />
-        <section id="movies">
+        <section id="movies" data-testid="search">
             <h3
                 style={{
                     fontSize: '1.6rem'
                 }}
-            >Results matching with: "{capitalize(query!)}"</h3>
+            >Results matching with: "{capitalize({str: query!})}"</h3>
             <div className='card-grid'>
           {
                   movies?.map(movie => {

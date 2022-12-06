@@ -57,6 +57,7 @@ const MovieCard:React.FC<Props> = ({movie, shouldShowFavorite}) => {
 
         <div className='movie-details'>
             <MovieDetails
+                key={movie.id}
                 shouldShowFavorite={shouldShowFavorite}
                 movie={movie}
             />

@@ -6,11 +6,13 @@ import { AuthContext } from './AuthContext';
 import { AuthReducer } from './AuthReducer';
 
 export interface AuthState {
-  token: string,
+  token: string;
+  error?: string;
 }
 
 const initialState:AuthState = {
-    token: localStorage.getItem("token" || [])!
+    token: localStorage.getItem("token" || "")!,
+    error: ''
 }
 
 interface Props {
@@ -22,18 +24,17 @@ const AuthProvider: React.FC<Props> = ({children}) => {
   const [state, dispatch] = useReducer(AuthReducer, initialState)
  
 
-    useEffect(() => {
+     const getToken = () => {
+      dispatch({
+        type: 'Auth - Load user token from Local Storage',
+        payload: JSON.parse(JSON.stringify(state.token))
+     })}
 
-        if(state.token !== ''){
-            dispatch({
-            type: 'Auth - Load user token from Local Storage',
-            payload: JSON.parse(JSON.stringify(state.token))
-          })
-        }
-        
-    }, [state])
+    useEffect(() => {
+      getToken()
+    }, [])
     
-  const login = async(email: string, password: string) => {
+   const login = async(email: string, password: string) => {
     
     try {
      const {data} = await axios.post("https://reqres.in/api/login", {

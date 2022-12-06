@@ -10,12 +10,12 @@ export const PageReducer = (state: PageState, action: PageType):PageState => {
         case "Page - Get One" :
             return {
                 ...state, 
-                page: state.page + 1
+                page: Number(state.page) + 1
             }
         case "Page - get Previous":
             return {
                 ...state,
-                page: state.page - 1
+                page: Number(state.page) - 1
             }
         default:
             return state;
